@@ -49,6 +49,8 @@ property notePrefix : "Completed on: "
 *)
 property multipleItemsCompleted : "Multiple Items"
 
+property startTime : 7
+
 set itemTitle to missing value
 tell application "OmniFocus"
 	tell front document
@@ -82,7 +84,8 @@ tell application "OmniFocus"
 				set context of theDupe to theWaitingForContext
 				set repetition of theDupe to missing value
 				-- set defer date of theDupe to missing value
-				set defer date of theDupe to (current date) + 86400 -- tomorrow
+				set deferDate to (current date) - (time of (current date)) + 86400
+				set defer date of theDupe to (deferDate + (startTime * hours))
 				set completed of anItem to true
 			end repeat
 			if (count of theSelectedItems) > 1 then
