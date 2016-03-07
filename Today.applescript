@@ -8,6 +8,7 @@
 
 property startTime : 7 --Start hour for items not previously assigned a start time (24 hr clock)
 
+
 -- Don't change these
 on main()
 	tell application "OmniFocus"
@@ -40,7 +41,12 @@ on startToday(selectedItem, currDate)
 			set originalStartDateTime to defer date of selectedItem
 			if (originalStartDateTime is not missing value) then
 				--Set new start date with original start time
-				set defer date of selectedItem to (currDate + (time of originalStartDateTime))
+				set todayDate to (currDate + (time of originalStartDateTime))
+				if originalStartDateTime is todayDate then
+					set defer date of selectedItem to missing value
+				else
+					set defer date of selectedItem to todayDate
+				end if
 				set success to true
 			else
 				set defer date of selectedItem to (currDate + (startTime * hours))
