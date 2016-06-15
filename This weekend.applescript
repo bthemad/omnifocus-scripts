@@ -8,8 +8,8 @@
 property setDueDate : false --set to False if you don't want to change the due date
 property weEndDay : Sunday
 property weEndTime : 17 --due time in hours (24 hr clock)
-property weStartDay : Friday
-property weStartTime : 20 --due time in hrs (24 hr clock)
+property weStartDay : Saturday
+property weStartTime : 8 --due time in hrs (24 hr clock)
 
 on main()
 	tell application "OmniFocus"
